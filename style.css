@@ -1,0 +1,201 @@
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --accent: #6366f1;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  animation: fadeIn 1s ease;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin-bottom: 12px;
+}
+
+.hero span {
+  color: var(--accent);
+}
+
+.hero p {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid var(--accent);
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: var(--accent);
+}
+
+.solid {
+  background: var(--accent);
+  border: none;
+}
+
+/* ALGORITHMS */
+.algos {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.algos h2 {
+  margin-bottom: 30px;
+}
+
+.algo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.algo-card {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  /* default no shadow */
+}
+
+/* Hover effect: pink glow all sides */
+.algo-card:hover {
+  transform: translateY(0);
+  /* optional: remove upward movement */
+  border-color: var(--accent);
+  box-shadow: 0 0 20px 5px rgba(255, 105, 180, 0.5);
+  /* pink glow */
+}
+
+
+.algo-card.active {
+  border-color: var(--accent);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.algo-card p {
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* BOTTOM BAR */
+.bottom {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.bottom span {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  /* Stack items vertically */
+  align-items: center;
+  gap: 10px;
+  /* Space between label and button */
+  margin-top: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Selected Algorithm label */
+.selected-label {
+  font-weight: 900;
+  font-size: 16px;
+  color: #ffffff;
+  /* Accent color */
+  background: linear-gradient(135deg, rgba(124, 77, 255, 0.2), rgba(179, 136, 255, 0.2));
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(124, 77, 255, 0.25);
+  margin: 0;
+  /* Remove default <p> margin */
+}
+
+/* Continue button */
+.continue-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(124, 77, 255, 0.3), rgba(179, 136, 255, 0.3));
+  color: #ffffff;
+  font-weight: 900;
+  padding: 10px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(124, 77, 255, 0.35);
+  text-decoration: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.continue-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFO (FCFS) Page Replacement</title>
+  <link rel="stylesheet" href="pagereplacement.css" />
+</head>
+<body data-algo="FIFO">
+  <div class="bg">
+    <div class="wave w1"></div>
+    <div class="wave w2"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">PR</div>
+      <div class="brand-text">
+        <div class="title">FIFO (FCFS) Page Replacement</div>
+        <div class="sub">Queue Based • Oldest Page Replaced</div>
+      </div>
+    </div>
+
+    <a class="back" href="index.html">← Home</a>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="panel-head">
+        <h1>FIFO (FCFS) Page Replacement Simulation</h1>
+        <p>Generate random reference → choose frames → Start to simulate step-by-step.</p>
+      </div>
+
+      <div class="controls">
+        <div class="field">
+          <label>Frames</label>
+          <select id="frames">
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Reference Length</label>
+          <input id="refLen" type="number" value="15" min="5" max="60" />
+        </div>
+
+        <div class="field">
+          <label>Max Page Value</label>
+          <input id="maxVal" type="number" value="9" min="3" max="99" />
+        </div>
+
+        <div class="field">
+          <label>Speed (ms)</label>
+          <input id="speed" type="number" value="700" min="100" max="3000" />
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-soft" id="genBtn">Generate</button>
+          <button class="btn btn-solid" id="startBtn">Start</button>
+          <button class="btn btn-soft" id="stepBtn">Step</button>
+          <button class="btn btn-soft" id="pauseBtn">Pause</button>
+          <button class="btn btn-danger" id="resetBtn">Reset</button>
+        </div>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">
+          <span>Reference String</span>
+          <span class="mini">Current: <b id="currentRef">-</b></span>
+        </div>
+        <div id="refString" class="ref-string"></div>
+      </div>
+    </section>
+
+    <section class="grid2">
+      <div class="panel">
+        <div class="panel-head small">
+          <h2>Frames</h2>
+          <p>Green = HIT, Red = MISS (Fault)</p>
+        </div>
+
+        <div class="status">
+          <div class="badge" id="statusBadge">Ready</div>
+          <div class="msg" id="statusMsg">Generate a reference string to begin.</div>
+        </div>
+
+        <div class="frames" id="framesBox"></div>
+
+        <div class="stats">
+          <div class="stat"><div class="k">Steps</div><div class="v" id="steps">0</div></div>
+          <div class="stat"><div class="k">Hits</div><div class="v hit" id="hits">0</div></div>
+          <div class="stat"><div class="k">Misses</div><div class="v miss" id="misses">0</div></div>
+          <div class="stat"><div class="k">Hit Ratio</div><div class="v" id="hitRatio">0.00</div></div>
+          <div class="stat"><div class="k">Miss Ratio</div><div class="v" id="missRatio">0.00</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head small">
+          <h2>Graph (Hits & Misses vs Steps)</h2>
+          <p>Lines grow as simulation progresses.</p>
+        </div>
+        <canvas id="chart" width="900" height="340"></canvas>
+        <div class="chart-legend">
+          <span class="dot miss"></span> Misses (Faults)
+          <span class="dot hit"></span> Hits
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head small">
+        <h2>Timeline Table (Textbook View)</h2>
+        <p>Columns = reference values, Rows = frame contents, Bottom = H/M</p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="sim-table" id="simTable">
+          <thead id="tableHead"></thead>
+          <tbody id="tableBody"></tbody>
+          <tfoot id="tableFoot"></tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head small">
+        <h2>Simulation Log</h2>
+        <p>Each step explains what happened (hit/miss and replacement).</p>
+      </div>
+      <div class="log" id="log"></div>
+    </section>
+  </main>
+
+  <script src="sim.js"></script>
+</body>
+</html>
